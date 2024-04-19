@@ -11,10 +11,8 @@ class PerfilesFamiliaresModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - getGastosPorPerfilFamiliar] action in txt_Gastos widget.
-  double? gastos;
-
-  /// Initialization and disposal methods.
+  // Stores action output result for [Custom Action - getGastosPorPerfilFamiliar] action in Card widget.
+  double? gasto;
 
   @override
   void initState(BuildContext context) {}
@@ -23,8 +21,4 @@ class PerfilesFamiliaresModel
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

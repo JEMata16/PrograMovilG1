@@ -27,7 +27,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
     super.initState();
     _model = createModel(context, () => AgregarGastoModel());
 
-    _model.txtMontoController ??= TextEditingController();
+    _model.txtMontoTextController ??= TextEditingController();
     _model.txtMontoFocusNode ??= FocusNode();
   }
 
@@ -74,6 +74,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -107,6 +108,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -125,6 +127,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -169,14 +172,19 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                                 setState(() => _model.perfilGastoValue = val),
                             width: MediaQuery.sizeOf(context).width * 0.95,
                             height: 56.0,
-                            textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintText: 'Seleccione una opción...',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 26.0,
                             ),
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 2.0,
@@ -205,6 +213,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -247,14 +256,18 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                               setState(() => _model.tipoGastoValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           hintText: 'Seleccione una opción...',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0xAA6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
@@ -282,6 +295,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -299,15 +313,24 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtMontoController,
+                          controller: _model.txtMontoTextController,
                           focusNode: _model.txtMontoFocusNode,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Monto',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -337,7 +360,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
@@ -345,8 +368,9 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                                 fontFamily: 'Lato',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
                               ),
-                          validator: _model.txtMontoControllerValidator
+                          validator: _model.txtMontoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -365,6 +389,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -397,6 +422,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     fontSize: 32.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                               pickerBackgroundColor:
@@ -437,6 +463,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
@@ -459,7 +486,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                       width: MediaQuery.sizeOf(context).width * 0.95,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xAA6AB3E7),
+                        color: const Color(0xFF6AB3E7),
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
                           color: FlutterFlowTheme.of(context).alternate,
@@ -476,7 +503,12 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                               _model.datePicked?.toString(),
                               '[DD/MM/YYYY]',
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       ),
@@ -493,6 +525,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                     FFButtonWidget(
                       onPressed: () async {
                         await actions.crearGasto(
+                          context,
                           random_data.randomString(
                             8,
                             15,
@@ -502,23 +535,8 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                           ),
                           _model.perfilGastoValue!,
                           _model.tipoGastoValue!,
-                          double.parse(_model.txtMontoController.text),
+                          double.parse(_model.txtMontoTextController.text),
                           _model.datePicked!,
-                        );
-
-                        context.pushNamed('InicioGastos');
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Gasto agregado correctamente',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).info,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor: const Color(0xFF41697D),
-                          ),
                         );
                       },
                       text: 'Agregar gasto',
@@ -534,6 +552,7 @@ class _AgregarGastoWidgetState extends State<AgregarGastoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(

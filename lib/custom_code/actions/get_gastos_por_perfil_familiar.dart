@@ -11,18 +11,23 @@ import 'package:flutter/material.dart';
 Future<double?> getGastosPorPerfilFamiliar(String perfilFamiliar) async {
   double totalExpenses = 0;
 
-  CollectionReference<Map<String, dynamic>> gastosCollection =
-      FirebaseFirestore.instance.collection('gastos');
+  try {
+    final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('gastos')
+        .where('perfil', isEqualTo: perfilFamiliar)
+        .get();
 
-  QuerySnapshot querySnapshot =
-      await gastosCollection.where('perfil', isEqualTo: perfilFamiliar).get();
+    querySnapshot.docs.forEach((QueryDocumentSnapshot doc) {
+      final dynamic data = doc.data();
+      final dynamic monto = data?['monto'];
+      totalExpenses += monto?.toDouble() ?? 0;
+    });
 
-  querySnapshot.docs.forEach((QueryDocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    totalExpenses += data['monto'];
-  });
-
-  return totalExpenses;
+    return totalExpenses;
+  } catch (e) {
+    print("Error getting expenses: $e");
+    return null;
+  }
 
   /// MODIFY CODE ONLY ABOVE THIS LINE
 }

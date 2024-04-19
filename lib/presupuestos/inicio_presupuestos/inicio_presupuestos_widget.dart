@@ -25,41 +25,42 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InicioPresupuestosModel());
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -138,6 +139,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -173,6 +175,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -204,6 +207,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -235,6 +239,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -266,6 +271,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -297,6 +303,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -328,6 +335,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -350,8 +358,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -369,6 +376,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -408,6 +416,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -434,6 +443,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -451,6 +461,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF091D33),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
                             ),
                       ),
@@ -462,6 +473,11 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: StreamBuilder<List<PresupuestosRecord>>(
                   stream: queryPresupuestosRecord(
+                    queryBuilder: (presupuestosRecord) =>
+                        presupuestosRecord.where(
+                      'perfil',
+                      isEqualTo: 'Personal',
+                    ),
                     limit: 3,
                   ),
                   builder: (context, snapshot) {
@@ -572,8 +588,12 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                   title: Text(
                                     listViewPresupuestosRecord.tipo,
                                     textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).titleLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                   subtitle: Text(
                                     '₡${listViewPresupuestosRecord.monto.toString()}',
@@ -583,9 +603,16 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                         .override(
                                           fontFamily: 'Lato',
                                           color: const Color(0xFF288347),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
-                                  tileColor: const Color(0xAA6AB3E7),
+                                  trailing: Icon(
+                                    Icons.edit,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  tileColor: const Color(0xFF6AB3E7),
                                   dense: false,
                                   contentPadding:
                                       const EdgeInsetsDirectional.fromSTEB(
@@ -615,6 +642,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -632,6 +660,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF091D33),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
                             ),
                       ),
@@ -722,7 +751,7 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                                       title: const Text(
                                                           'Eliminar presupuesto familiar'),
                                                       content: Text(
-                                                          '¿Desea eliminar el gasto de${listViewPresupuestosRecord.perfil}?'),
+                                                          '¿Desea eliminar el gasto de ${listViewPresupuestosRecord.perfil}?'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
@@ -756,10 +785,14 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                 ),
                                 child: ListTile(
                                   title: Text(
-                                    listViewPresupuestosRecord.perfil,
+                                    listViewPresupuestosRecord.tipo,
                                     textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).titleLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                   subtitle: Text(
                                     '₡${listViewPresupuestosRecord.monto.toString()}',
@@ -769,9 +802,16 @@ class _InicioPresupuestosWidgetState extends State<InicioPresupuestosWidget>
                                         .override(
                                           fontFamily: 'Lato',
                                           color: const Color(0xFF288347),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
-                                  tileColor: const Color(0xAA6AB3E7),
+                                  trailing: Icon(
+                                    Icons.edit,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 20.0,
+                                  ),
+                                  tileColor: const Color(0xFF6AB3E7),
                                   dense: false,
                                   contentPadding:
                                       const EdgeInsetsDirectional.fromSTEB(

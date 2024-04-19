@@ -16,10 +16,8 @@ class AgregarPresupuestoModel
   FormFieldController<String>? tipoValueController;
   // State field(s) for txtMonto widget.
   FocusNode? txtMontoFocusNode;
-  TextEditingController? txtMontoController;
-  String? Function(BuildContext, String?)? txtMontoControllerValidator;
-
-  /// Initialization and disposal methods.
+  TextEditingController? txtMontoTextController;
+  String? Function(BuildContext, String?)? txtMontoTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -28,10 +26,6 @@ class AgregarPresupuestoModel
   void dispose() {
     unfocusNode.dispose();
     txtMontoFocusNode?.dispose();
-    txtMontoController?.dispose();
+    txtMontoTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

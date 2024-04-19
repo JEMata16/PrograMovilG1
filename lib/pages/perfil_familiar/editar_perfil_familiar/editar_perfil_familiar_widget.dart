@@ -30,35 +30,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -69,6 +41,35 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
         TextEditingController(text: widget.perfil?.nombre);
     _model.textFieldFocusNode ??= FocusNode();
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -147,6 +148,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -173,6 +175,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -194,6 +197,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -215,6 +219,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -236,6 +241,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -257,6 +263,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -278,6 +285,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -299,8 +307,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -318,6 +325,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -357,6 +365,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -391,6 +400,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w800,
                                 ),
                       ),
@@ -415,6 +425,7 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -434,9 +445,15 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -466,9 +483,13 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           validator: _model.textControllerValidator
                               .asValidator(context),
                         ),
@@ -483,11 +504,12 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                   .update(createFamiliaresRecordData(
                                 nombre: _model.textController.text,
                               ));
+                              context.safePop();
                             },
                             text: 'Editar perfil',
                             options: FFButtonOptions(
-                              width: 181.0,
-                              height: 55.0,
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -498,23 +520,52 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              await widget.perfil!.reference.delete();
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                                'Eliminar perfil familiar'),
+                                            content: const Text(
+                                                '¿Desea eliminar el perfil familiar?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirmar'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await widget.perfil!.reference.delete();
+                                context.safePop();
+                              }
                             },
                             text: 'Eliminar perfil',
                             options: FFButtonOptions(
-                              width: 181.0,
-                              height: 55.0,
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -525,13 +576,14 @@ class _EditarPerfilFamiliarWidgetState extends State<EditarPerfilFamiliarWidget>
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ],

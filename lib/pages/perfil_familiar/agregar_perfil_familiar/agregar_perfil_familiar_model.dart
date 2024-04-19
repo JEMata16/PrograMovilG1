@@ -9,14 +9,12 @@ class AgregarPerfilFamiliarModel
   final unfocusNode = FocusNode();
   // State field(s) for txt_familiar widget.
   FocusNode? txtFamiliarFocusNode;
-  TextEditingController? txtFamiliarController;
-  String? Function(BuildContext, String?)? txtFamiliarControllerValidator;
+  TextEditingController? txtFamiliarTextController;
+  String? Function(BuildContext, String?)? txtFamiliarTextControllerValidator;
   // State field(s) for txt_inginc widget.
   FocusNode? txtIngincFocusNode;
-  TextEditingController? txtIngincController;
-  String? Function(BuildContext, String?)? txtIngincControllerValidator;
-
-  /// Initialization and disposal methods.
+  TextEditingController? txtIngincTextController;
+  String? Function(BuildContext, String?)? txtIngincTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -25,13 +23,9 @@ class AgregarPerfilFamiliarModel
   void dispose() {
     unfocusNode.dispose();
     txtFamiliarFocusNode?.dispose();
-    txtFamiliarController?.dispose();
+    txtFamiliarTextController?.dispose();
 
     txtIngincFocusNode?.dispose();
-    txtIngincController?.dispose();
+    txtIngincTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

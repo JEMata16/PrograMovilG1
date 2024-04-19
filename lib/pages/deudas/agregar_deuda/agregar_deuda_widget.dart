@@ -25,10 +25,10 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
     super.initState();
     _model = createModel(context, () => AgregarDeudaModel());
 
-    _model.txtTituloDeudaController ??= TextEditingController();
+    _model.txtTituloDeudaTextController ??= TextEditingController();
     _model.txtTituloDeudaFocusNode ??= FocusNode();
 
-    _model.intMontoController ??= TextEditingController();
+    _model.intMontoTextController ??= TextEditingController();
     _model.intMontoFocusNode ??= FocusNode();
   }
 
@@ -75,6 +75,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -109,6 +110,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w800,
                                 ),
                       ),
@@ -133,6 +135,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -141,34 +144,66 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                        child: FlutterFlowDropDown<String>(
-                          controller: _model.dropDownPerfilValueController ??=
-                              FormFieldController<String>(
-                            _model.dropDownPerfilValue ??= 'Personal',
-                          ),
-                          options: const ['Personal', 'Familiar'],
-                          onChanged: (val) =>
-                              setState(() => _model.dropDownPerfilValue = val),
-                          width: MediaQuery.sizeOf(context).width * 0.95,
-                          height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Please select...',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor: const Color(0x4A6AB3E7),
-                          elevation: 2.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
-                          borderRadius: 25.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: false,
-                          isMultiSelect: false,
+                        child: StreamBuilder<List<FamiliaresRecord>>(
+                          stream: queryFamiliaresRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            List<FamiliaresRecord>
+                                dropDownPerfilFamiliaresRecordList =
+                                snapshot.data!;
+                            return FlutterFlowDropDown<String>(
+                              controller:
+                                  _model.dropDownPerfilValueController ??=
+                                      FormFieldController<String>(
+                                _model.dropDownPerfilValue ??= 'Personal',
+                              ),
+                              options: dropDownPerfilFamiliaresRecordList
+                                  .map((e) => e.nombre)
+                                  .toList(),
+                              onChanged: (val) => setState(
+                                  () => _model.dropDownPerfilValue = val),
+                              width: MediaQuery.sizeOf(context).width * 0.95,
+                              height: 56.0,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'Seleccione una opción...',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                              fillColor: const Color(0xFF6AB3E7),
+                              elevation: 2.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isOverButton: true,
+                              isSearchable: false,
+                              isMultiSelect: false,
+                            );
+                          },
                         ),
                       ),
                       Align(
@@ -181,6 +216,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -190,7 +226,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 20.0),
                         child: TextFormField(
-                          controller: _model.txtTituloDeudaController,
+                          controller: _model.txtTituloDeudaTextController,
                           focusNode: _model.txtTituloDeudaFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -199,42 +235,53 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             errorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.txtTituloDeudaControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model
+                              .txtTituloDeudaTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -248,6 +295,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -257,7 +305,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 20.0),
                         child: TextFormField(
-                          controller: _model.intMontoController,
+                          controller: _model.intMontoTextController,
                           focusNode: _model.intMontoFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -266,42 +314,52 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             errorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.intMontoControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.intMontoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -315,6 +373,7 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -340,18 +399,22 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                               setState(() => _model.dropDownTipoValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Please select...',
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Seleccione una opción...',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0x4A6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
-                          borderRadius: 25.0,
+                          borderRadius: 8.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
@@ -370,83 +433,92 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            final datePickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: getCurrentTimestamp,
-                              firstDate:
-                                  (getCurrentTimestamp ?? DateTime(1900)),
-                              lastDate: DateTime(2050),
-                              builder: (context, child) {
-                                return wrapInMaterialDatePickerTheme(
-                                  context,
-                                  child!,
-                                  headerBackgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  headerForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  headerTextStyle: FlutterFlowTheme.of(context)
-                                      .headlineLarge
-                                      .override(
-                                        fontFamily: 'Lato',
-                                        fontSize: 32.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  pickerBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  pickerForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  selectedDateTimeBackgroundColor:
-                                      const Color(0xFF41697D),
-                                  selectedDateTimeForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  actionButtonForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  iconSize: 24.0,
-                                );
-                              },
-                            );
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 20.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              final datePickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: getCurrentTimestamp,
+                                firstDate:
+                                    (getCurrentTimestamp ?? DateTime(1900)),
+                                lastDate: DateTime(2050),
+                                builder: (context, child) {
+                                  return wrapInMaterialDatePickerTheme(
+                                    context,
+                                    child!,
+                                    headerBackgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    headerForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    headerTextStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .override(
+                                              fontFamily: 'Lato',
+                                              fontSize: 32.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                    pickerBackgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    pickerForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    selectedDateTimeBackgroundColor:
+                                        const Color(0xFF41697D),
+                                    selectedDateTimeForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    actionButtonForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    iconSize: 24.0,
+                                  );
+                                },
+                              );
 
-                            if (datePickedDate != null) {
-                              safeSetState(() {
-                                _model.datePicked = DateTime(
-                                  datePickedDate.year,
-                                  datePickedDate.month,
-                                  datePickedDate.day,
-                                );
-                              });
-                            }
-                          },
-                          text: 'Seleccione una fecha',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF41697D),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Lato',
-                                  color: Colors.white,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              if (datePickedDate != null) {
+                                safeSetState(() {
+                                  _model.datePicked = DateTime(
+                                    datePickedDate.year,
+                                    datePickedDate.month,
+                                    datePickedDate.day,
+                                  );
+                                });
+                              }
+                            },
+                            text: 'Seleccione una fecha',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: const Color(0xFF41697D),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Lato',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -461,10 +533,10 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                                   .doc()
                                   .set(createDeudasRecordData(
                                     perfil: _model.dropDownPerfilValue,
-                                    tituloDeuda:
-                                        _model.txtTituloDeudaController.text,
+                                    tituloDeuda: _model
+                                        .txtTituloDeudaTextController.text,
                                     monto: double.tryParse(
-                                        _model.intMontoController.text),
+                                        _model.intMontoTextController.text),
                                     tipo: _model.dropDownTipoValue,
                                     fechaPago: _model.datePicked,
                                   ));
@@ -472,8 +544,8 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                             },
                             text: 'Agregar deuda',
                             options: FFButtonOptions(
-                              width: 269.0,
-                              height: 55.0,
+                              width: MediaQuery.sizeOf(context).width * 0.6,
+                              height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -484,13 +556,14 @@ class _AgregarDeudaWidgetState extends State<AgregarDeudaWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ],

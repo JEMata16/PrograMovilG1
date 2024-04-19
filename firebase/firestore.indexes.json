@@ -1,3 +1,32 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "gastos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "perfil",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fecha",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "ingresos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "perfil",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaIngreso",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }

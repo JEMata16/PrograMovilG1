@@ -23,41 +23,42 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => EducacionFinancieraModel());
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -136,6 +137,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -150,128 +152,194 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Perfiles familiares',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('PerfilesFamiliares');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Perfiles familiares',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Ingresos',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('InicioIngresos');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Ingresos',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Gastos',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('InicioGastos');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Gastos',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Presupuestos',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('InicioPresupuestos');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Presupuestos',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Deudas',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('InicioDeudas');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Deudas',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Educación financiera',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('EducacionFinanciera');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Educación financiera',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    color: const Color(0xFF41697D),
+                                    fontSize: 19.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Align(
@@ -288,8 +356,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -307,6 +374,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -346,6 +414,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -379,6 +448,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -418,6 +488,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                   fontFamily: 'Lato',
                                                   color: const Color(0xFF41697D),
                                                   fontSize: 15.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle: FontStyle.italic,
                                                 ),
@@ -444,7 +515,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                       .height *
                                                   0.23,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xAA6AB3E7),
+                                                color: const Color(0xFF6AB3E7),
                                                 borderRadius:
                                                     BorderRadius.circular(20.0),
                                               ),
@@ -454,7 +525,11 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                   'La Educación Financiera consiste en su capacidad para comprender los conceptos básicos de las finanzas personales y el manejo del dinero, pero usted tiene que entender estos conceptos de una manera que le permita aplicarlos en su vida financiera cotidiana.\n\nAsí que no sólo se trata de tener el conocimiento, sino que también debe tener la habilidad de aplicarlo para enfrentar los desafíos financieros y cumplir con sus objetivos. (NFCC, 2024)',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -488,6 +563,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                           color:
                                                               const Color(0xFF41697D),
                                                           fontSize: 15.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontStyle:
@@ -520,7 +596,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                             .height *
                                                         0.35,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xAA6AB3E7),
+                                                  color: const Color(0xFF6AB3E7),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           20.0),
@@ -531,7 +607,11 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                     '1. Conocer los términos y conceptos básicos, relacionados con un tema financiero en particular.\n2. Comprender ese tema a un nivel en el que realmente se entienda el concepto, y cómo es aplicable en su vida diaria.\n3. Luego, aplicar ese conocimiento a sus propias finanzas para que pueda construir y hacer crecer una base financiera sólida.\n4. Una vez aplicado, usted debe analizar el impacto de las decisiones que tomó y las ajusta según sea necesario. Aquí es donde usted presta atención a los pequeños detalles que pueden ser determinantes en su estrategia.\n5. Una vez que haya hecho los ajustes necesarios, usted sintetiza lo aprendido en su plan financiero general. (La síntesis es esencialmente donde usted ajusta un tema específico en el panorama general.) (NFCC, 2024)',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Lato',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -560,6 +640,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                               fontFamily: 'Lato',
                                               color: const Color(0xFF41697D),
                                               fontSize: 15.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                               fontStyle: FontStyle.italic,
                                             ),
@@ -585,7 +666,7 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                                   .height *
                                               0.885,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xAA6AB3E7),
+                                            color: const Color(0xFF6AB3E7),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
@@ -595,7 +676,11 @@ class _EducacionFinancieraWidgetState extends State<EducacionFinancieraWidget>
                                               '1. El presupuesto representa su capacidad para comprender los temas que se relacionan con el manejo diario del dinero. Incluye conceptos como: fuentes de ingreso, gastos fijos/flexibles/ discrecionales, y obligaciones de pago mensuales.\n2. Los ahorros son su capacidad para guardar dinero y asignar fondos para invertir en su futuro. Eso significa que usted tiene que entender conceptos como cuentas de ahorro, intereses, rendimientos, e incluso los temas de inversión como la de los valores.\n3. Manejo de necesidades básicas es cuando usted tiene la capacidad de manejar todos los costos relacionados con las necesidades de la vida, como la vivienda y el transporte. Esto significa la gestión de facturas mensuales, e incluso entender los seguros.\n4. Banca se refiere a los detalles del manejo de sus cuentas. Esto significa que usted necesita tener la capacidad de entender sus cuentas, cómo funcionan, y los cargos, tasas o términos que son aplicables.\n5. El manejo de costos de cuidado de salud puede ser complicado, porque se trata de temas complejos tales como los seguros médicos, deducibles y los niveles de cobertura. Los costos médicos tienen maneras de arruinar incluso los presupuestos más estables si usted no tiene una buena base de conocimientos sobre este tema.\n6. El manejo de deudas es su capacidad para asumir deuda de forma efectiva, entender los términos y tarifas que se aplican a cosas como los préstamos y tarjetas de crédito. Sin una comprensión sólida, la deuda puede fácilmente abrumar sus finanzas.\n (NFCC, 2024)',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
                                           ),
                                         ),

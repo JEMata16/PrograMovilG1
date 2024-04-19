@@ -46,3 +46,8 @@ export '/presupuestos/presupuestos_personales/presupuestos_personales_widget.dar
     show PresupuestosPersonalesWidget;
 export '/presupuestos/presupuestos_familiares/presupuestos_familiares_widget.dart'
     show PresupuestosFamiliaresWidget;
+export '/animaciones/animaciones_widget.dart' show AnimacionesWidget;
+export '/pages/deudas/deudas_personales/deudas_personales_widget.dart'
+    show DeudasPersonalesWidget;
+export '/pages/deudas/deudas_familiares/deudas_familiares_widget.dart'
+    show DeudasFamiliaresWidget;

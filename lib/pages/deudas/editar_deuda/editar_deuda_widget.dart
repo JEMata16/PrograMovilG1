@@ -30,11 +30,11 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
     super.initState();
     _model = createModel(context, () => EditarDeudaModel());
 
-    _model.txtTituloDeudaController ??=
+    _model.txtTituloDeudaTextController ??=
         TextEditingController(text: widget.deudas?.tituloDeuda);
     _model.txtTituloDeudaFocusNode ??= FocusNode();
 
-    _model.intMontoController ??=
+    _model.intMontoTextController ??=
         TextEditingController(text: widget.deudas?.monto.toString());
     _model.intMontoFocusNode ??= FocusNode();
   }
@@ -82,6 +82,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -116,6 +117,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w800,
                                 ),
                       ),
@@ -140,6 +142,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -159,18 +162,22 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                               setState(() => _model.dropDownPerfilValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           hintText: 'Please select...',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0x4A6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
-                          borderRadius: 25.0,
+                          borderRadius: 8.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
@@ -189,6 +196,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -198,7 +206,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 20.0),
                         child: TextFormField(
-                          controller: _model.txtTituloDeudaController,
+                          controller: _model.txtTituloDeudaTextController,
                           focusNode: _model.txtTituloDeudaFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -207,42 +215,53 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             errorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.txtTituloDeudaControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model
+                              .txtTituloDeudaTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -256,6 +275,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -265,7 +285,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 20.0),
                         child: TextFormField(
-                          controller: _model.intMontoController,
+                          controller: _model.intMontoTextController,
                           focusNode: _model.intMontoFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -274,42 +294,52 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             errorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).error,
                                 width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.intMontoControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.intMontoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -323,6 +353,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -348,18 +379,22 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                               setState(() => _model.dropDownTipoValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           hintText: 'Please select...',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0x4A6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
-                          borderRadius: 25.0,
+                          borderRadius: 8.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
@@ -378,16 +413,17 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
+                              10.0, 0.0, 0.0, 20.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               final datePickedDate = await showDatePicker(
@@ -411,6 +447,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                             .override(
                                               fontFamily: 'Lato',
                                               fontSize: 32.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
                                     pickerBackgroundColor:
@@ -454,6 +491,7 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
@@ -467,26 +505,26 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              await DeudasRecord.collection
-                                  .doc()
-                                  .set(createDeudasRecordData(
-                                    perfil: _model.dropDownPerfilValue,
-                                    tituloDeuda:
-                                        _model.txtTituloDeudaController.text,
-                                    monto: double.tryParse(
-                                        _model.intMontoController.text),
-                                    tipo: _model.dropDownTipoValue,
-                                    fechaPago: _model.datePicked,
-                                  ));
+                              await widget.deudas!.reference
+                                  .update(createDeudasRecordData(
+                                perfil: _model.dropDownPerfilValue,
+                                tituloDeuda:
+                                    _model.txtTituloDeudaTextController.text,
+                                monto: double.tryParse(
+                                    _model.intMontoTextController.text),
+                                tipo: _model.dropDownTipoValue,
+                                fechaPago: _model.datePicked,
+                              ));
+                              context.safePop();
                             },
                             text: 'Editar deuda',
                             options: FFButtonOptions(
-                              width: 181.0,
-                              height: 55.0,
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -497,24 +535,51 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              await widget.deudas!.reference.delete();
-                              context.safePop();
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Eliminar esta deuda'),
+                                            content: const Text(
+                                                '¿Desea eliminar esta deuda?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirmar'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await widget.deudas!.reference.delete();
+                                context.safePop();
+                              }
                             },
                             text: 'Eliminar deuda',
                             options: FFButtonOptions(
-                              width: 181.0,
-                              height: 55.0,
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -525,13 +590,14 @@ class _EditarDeudaWidgetState extends State<EditarDeudaWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ].divide(const SizedBox(width: 5.0)),

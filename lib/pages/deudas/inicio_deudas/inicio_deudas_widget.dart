@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/componentes/lista_vacia/lista_vacia_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -27,41 +28,42 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InicioDeudasModel());
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -140,6 +142,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -175,6 +178,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -206,6 +210,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -237,6 +242,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -268,6 +274,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -299,6 +306,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -330,6 +338,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -352,8 +361,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -371,6 +379,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -410,6 +419,7 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -424,260 +434,97 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Deudas',
-                        textAlign: TextAlign.center,
-                        style:
-                            FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: 'Lato',
-                                  color: const Color(0xFF41697D),
-                                  fontWeight: FontWeight.w800,
-                                ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Sus deudas personales',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
-                      child: Text(
-                        'Ver todos',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              StreamBuilder<List<DeudasRecord>>(
-                stream: queryDeudasRecord(
-                  queryBuilder: (deudasRecord) => deudasRecord.where(
-                    'perfil',
-                    isEqualTo: widget.deudaPersonales,
-                  ),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  List<DeudasRecord> columnDeudasRecordList = snapshot.data!;
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: List.generate(columnDeudasRecordList.length,
-                        (columnIndex) {
-                      final columnDeudasRecord =
-                          columnDeudasRecordList[columnIndex];
-                      return Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
-                          child: Container(
-                            width: 332.0,
-                            height: 74.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(20.0),
-                                bottomRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 10.0),
-                                        child: Text(
-                                          columnDeudasRecord.tituloDeuda,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                      Text(
-                                        valueOrDefault<String>(
-                                          columnDeudasRecord.fechaPago
-                                              ?.toString(),
-                                          'Unknown',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 22.0, 0.0),
-                                              child: Text(
-                                                columnDeudasRecord.monto
-                                                    .toString(),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                            ),
-                                            Text(
-                                              columnDeudasRecord.tipo,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 10.0, 30.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'EditarDeuda',
-                                                queryParameters: {
-                                                  'deudas': serializeParam(
-                                                    columnDeudasRecord,
-                                                    ParamType.Document,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  'deudas': columnDeudasRecord,
-                                                },
-                                              );
-                                            },
-                                            child: Icon(
-                                              Icons.edit,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  );
-                },
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Deudas familiares',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              color: const Color(0xFF41697D),
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
-                      child: Text(
-                        'Ver todos',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Lato',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Deudas',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Deudas personales',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  color: const Color(0xFF41697D),
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 30.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('DeudasPersonales');
+                            },
+                            child: Text(
+                              'Ver todos',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Lato',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   StreamBuilder<List<DeudasRecord>>(
-                    stream: queryDeudasRecord(),
+                    stream: queryDeudasRecord(
+                      queryBuilder: (deudasRecord) => deudasRecord.where(
+                        'perfil',
+                        isEqualTo: 'Personal',
+                      ),
+                      limit: 3,
+                    ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -693,72 +540,432 @@ class _InicioDeudasWidgetState extends State<InicioDeudasWidget>
                           ),
                         );
                       }
-                      List<DeudasRecord> listViewDeudasRecordList =
+                      List<DeudasRecord> columnDeudasRecordList =
                           snapshot.data!;
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewDeudasRecordList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewDeudasRecord =
-                              listViewDeudasRecordList[listViewIndex];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 50.0, 2.0),
-                            child: ListTile(
-                              title: Text(
-                                'Title',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context).titleLarge,
-                              ),
-                              subtitle: Text(
-                                'Subtitle goes here...',
-                                style: FlutterFlowTheme.of(context).labelMedium,
-                              ),
-                              trailing: Icon(
-                                Icons.edit,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 20.0,
-                              ),
-                              tileColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              dense: false,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0),
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
+                      if (columnDeudasRecordList.isEmpty) {
+                        return const ListaVaciaWidget();
+                      }
+                      return Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: List.generate(columnDeudasRecordList.length,
+                            (columnIndex) {
+                          final columnDeudasRecord =
+                              columnDeudasRecordList[columnIndex];
+                          return Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 5.0),
+                              child: Container(
+                                width: 332.0,
+                                height: 74.0,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF6AB3E7),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 10.0),
+                                            child: Text(
+                                              columnDeudasRecord.tituloDeuda,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                            ),
+                                          ),
+                                          Text(
+                                            valueOrDefault<String>(
+                                              columnDeudasRecord.fechaPago
+                                                  ?.toString(),
+                                              'Unknown',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Lato',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 22.0, 0.0),
+                                                  child: Text(
+                                                    '₡${columnDeudasRecord.monto.toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Lato',
+                                                          color:
+                                                              const Color(0xFFC23A3A),
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  columnDeudasRecord.tipo,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 10.0, 30.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    'EditarDeuda',
+                                                    queryParameters: {
+                                                      'deudas': serializeParam(
+                                                        columnDeudasRecord,
+                                                        ParamType.Document,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      'deudas':
+                                                          columnDeudasRecord,
+                                                    },
+                                                  );
+                                                },
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           );
-                        },
+                        }),
                       );
                     },
                   ),
-                  Align(
-                    alignment: const AlignmentDirectional(1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).accent1,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 50.0,
-                        fillColor: FlutterFlowTheme.of(context).accent1,
-                        icon: Icon(
-                          Icons.add,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30.0,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Deudas familiares',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  color: const Color(0xFF41697D),
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
                         ),
-                        onPressed: () async {
-                          context.pushNamed('AgregarDeuda');
-                        },
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 30.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('DeudasFamiliares');
+                            },
+                            child: Text(
+                              'Ver todos',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Lato',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  StreamBuilder<List<DeudasRecord>>(
+                    stream: queryDeudasRecord(
+                      queryBuilder: (deudasRecord) => deudasRecord.where(
+                        'perfil',
+                        isNotEqualTo: 'Personal',
                       ),
+                      limit: 3,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<DeudasRecord> columnDeudasRecordList =
+                          snapshot.data!;
+                      if (columnDeudasRecordList.isEmpty) {
+                        return const ListaVaciaWidget();
+                      }
+                      return SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(columnDeudasRecordList.length,
+                              (columnIndex) {
+                            final columnDeudasRecord =
+                                columnDeudasRecordList[columnIndex];
+                            return Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 5.0),
+                                child: Container(
+                                  width: 332.0,
+                                  height: 74.0,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFF6AB3E7),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20.0),
+                                      bottomRight: Radius.circular(20.0),
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 10.0),
+                                              child: Text(
+                                                columnDeudasRecord.tituloDeuda,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Lato',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                            Text(
+                                              valueOrDefault<String>(
+                                                columnDeudasRecord.fechaPago
+                                                    ?.toString(),
+                                                '0',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                22.0, 0.0),
+                                                    child: Text(
+                                                      '₡${columnDeudasRecord.monto.toString()}',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Lato',
+                                                            color: const Color(
+                                                                0xFFC23A3A),
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    columnDeudasRecord.tipo,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Lato',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 10.0, 30.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'EditarDeuda',
+                                                      queryParameters: {
+                                                        'deudas':
+                                                            serializeParam(
+                                                          columnDeudasRecord,
+                                                          ParamType.Document,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        'deudas':
+                                                            columnDeudasRecord,
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 15.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FlutterFlowIconButton(
+                          borderColor: const Color(0xFF41697D),
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          fillColor: const Color(0xFF41697D),
+                          icon: const Icon(
+                            Icons.add,
+                            color: Color(0xE6FFFFFF),
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            context.pushNamed('AgregarDeuda');
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ],

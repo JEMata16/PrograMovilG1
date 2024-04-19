@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'ingresos_familiares_model.dart';
 export 'ingresos_familiares_model.dart';
 
@@ -24,41 +23,42 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => IngresosFamiliaresModel());
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -137,6 +137,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -172,6 +173,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -203,6 +205,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -234,6 +237,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -265,6 +269,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -296,6 +301,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -327,6 +333,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -349,8 +356,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -368,6 +374,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -405,6 +412,7 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Lato',
                     fontSize: 18.0,
+                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w800,
                   ),
             ),
@@ -453,163 +461,205 @@ class _IngresosFamiliaresWidgetState extends State<IngresosFamiliaresWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: StreamBuilder<List<IngresosRecord>>(
-                      stream: queryIngresosRecord(
-                        queryBuilder: (ingresosRecord) => ingresosRecord.where(
-                          'perfil',
-                          isNotEqualTo: 'Personal',
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: StreamBuilder<List<IngresosRecord>>(
+                  stream: queryIngresosRecord(
+                    queryBuilder: (ingresosRecord) => ingresosRecord.where(
+                      'perfil',
+                      isNotEqualTo: 'Personal',
+                    ),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
                         ),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                      );
+                    }
+                    List<IngresosRecord> columnIngresosRecordList =
+                        snapshot.data!;
+                    if (columnIngresosRecordList.isEmpty) {
+                      return const ListaVaciaWidget();
+                    }
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: List.generate(columnIngresosRecordList.length,
+                            (columnIndex) {
+                          final columnIngresosRecord =
+                              columnIngresosRecordList[columnIndex];
+                          return Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 5.0),
+                              child: Container(
+                                width: 332.0,
+                                height: 74.0,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF6AB3E7),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 10.0),
+                                            child: Text(
+                                              columnIngresosRecord.perfil,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Lato',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontStyle: FontStyle.italic,
+                                                  ),
+                                            ),
+                                          ),
+                                          Text(
+                                            valueOrDefault<String>(
+                                              columnIngresosRecord.fechaIngreso
+                                                  ?.toString(),
+                                              '0',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Lato',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 22.0, 0.0),
+                                                  child: Text(
+                                                    '₡${columnIngresosRecord.monto.toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Lato',
+                                                          color:
+                                                              const Color(0xFF288347),
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  columnIngresosRecord
+                                                      .tipoIngreso,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Lato',
+                                                        letterSpacing: 0.0,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 10.0, 30.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    'EditarIngreso',
+                                                    queryParameters: {
+                                                      'ingreso': serializeParam(
+                                                        columnIngresosRecord,
+                                                        ParamType.Document,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      'ingreso':
+                                                          columnIngresosRecord,
+                                                    },
+                                                  );
+                                                },
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           );
-                        }
-                        List<IngresosRecord> listViewIngresosRecordList =
-                            snapshot.data!;
-                        if (listViewIngresosRecordList.isEmpty) {
-                          return const ListaVaciaWidget();
-                        }
-                        return ListView.separated(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewIngresosRecordList.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 4.0),
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewIngresosRecord =
-                                listViewIngresosRecordList[listViewIndex];
-                            return Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 50.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'EditarIngreso',
-                                      queryParameters: {
-                                        'ingreso': serializeParam(
-                                          listViewIngresosRecord,
-                                          ParamType.Document,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        'ingreso': listViewIngresosRecord,
-                                      },
-                                    );
-                                  },
-                                  child: Slidable(
-                                    endActionPane: ActionPane(
-                                      motion: const ScrollMotion(),
-                                      extentRatio: 0.25,
-                                      children: [
-                                        SlidableAction(
-                                          label: 'Eliminar',
-                                          backgroundColor: const Color(0xFFC23A3A),
-                                          icon: Icons.delete_outline_rounded,
-                                          onPressed: (_) async {
-                                            var confirmDialogResponse =
-                                                await showDialog<bool>(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'Eliminar ingreso familiar'),
-                                                          content: Text(
-                                                              '¿Desea eliminar el ingreso de${listViewIngresosRecord.perfil}?'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext,
-                                                                      false),
-                                                              child: const Text(
-                                                                  'Cancelar'),
-                                                            ),
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext,
-                                                                      true),
-                                                              child: const Text(
-                                                                  'Confirmar'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    ) ??
-                                                    false;
-                                            if (confirmDialogResponse) {
-                                              await listViewIngresosRecord
-                                                  .reference
-                                                  .delete();
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                    child: ListTile(
-                                      title: Text(
-                                        listViewIngresosRecord.perfil,
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge,
-                                      ),
-                                      subtitle: Text(
-                                        '₡${listViewIngresosRecord.monto.toString()}',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Lato',
-                                              color: const Color(0xFF288347),
-                                            ),
-                                      ),
-                                      tileColor: const Color(0xAA6AB3E7),
-                                      dense: false,
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10.0, 0.0, 0.0, 0.0),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                        }),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

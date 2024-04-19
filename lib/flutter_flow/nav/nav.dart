@@ -72,16 +72,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const PerfilesFamiliaresWidget()
-          : const PerfilesFamiliaresWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? const InicioWidget() : const InicioSesionWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const PerfilesFamiliaresWidget()
-              : const PerfilesFamiliaresWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const InicioWidget() : const InicioSesionWidget(),
         ),
         FFRoute(
           name: 'InicioSesion',
@@ -110,8 +108,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             'perfil': getDoc(['familiares'], FamiliaresRecord.fromSnapshot),
           },
           builder: (context, params) => EditarPerfilFamiliarWidget(
-            nombrePerfil: params.getParam('nombrePerfil', ParamType.String),
-            perfil: params.getParam('perfil', ParamType.Document),
+            nombrePerfil: params.getParam(
+              'nombrePerfil',
+              ParamType.String,
+            ),
+            perfil: params.getParam(
+              'perfil',
+              ParamType.Document,
+            ),
           ),
         ),
         FFRoute(
@@ -151,7 +155,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             'gasto': getDoc(['gastos'], GastosRecord.fromSnapshot),
           },
           builder: (context, params) => EditarGastoWidget(
-            gasto: params.getParam('gasto', ParamType.Document),
+            gasto: params.getParam(
+              'gasto',
+              ParamType.Document,
+            ),
           ),
         ),
         FFRoute(
@@ -163,8 +170,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'InicioDeudas',
           path: '/inicioDeudas',
           builder: (context, params) => InicioDeudasWidget(
-            deudaPersonales:
-                params.getParam('deudaPersonales', ParamType.String),
+            deudaPersonales: params.getParam(
+              'deudaPersonales',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -184,7 +193,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             'ingreso': getDoc(['ingresos'], IngresosRecord.fromSnapshot),
           },
           builder: (context, params) => EditarIngresoWidget(
-            ingreso: params.getParam('ingreso', ParamType.Document),
+            ingreso: params.getParam(
+              'ingreso',
+              ParamType.Document,
+            ),
           ),
         ),
         FFRoute(
@@ -204,7 +216,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             'deudas': getDoc(['deudas'], DeudasRecord.fromSnapshot),
           },
           builder: (context, params) => EditarDeudaWidget(
-            deudas: params.getParam('deudas', ParamType.Document),
+            deudas: params.getParam(
+              'deudas',
+              ParamType.Document,
+            ),
           ),
         ),
         FFRoute(
@@ -220,7 +235,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 getDoc(['presupuestos'], PresupuestosRecord.fromSnapshot),
           },
           builder: (context, params) => EditarPresupuestoWidget(
-            presupuesto: params.getParam('presupuesto', ParamType.Document),
+            presupuesto: params.getParam(
+              'presupuesto',
+              ParamType.Document,
+            ),
           ),
         ),
         FFRoute(
@@ -237,6 +255,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PresupuestosFamiliares',
           path: '/presupuestosFamiliares',
           builder: (context, params) => const PresupuestosFamiliaresWidget(),
+        ),
+        FFRoute(
+          name: 'Animaciones',
+          path: '/animaciones',
+          builder: (context, params) => const AnimacionesWidget(),
+        ),
+        FFRoute(
+          name: 'DeudasPersonales',
+          path: '/deudasPersonales',
+          builder: (context, params) => const DeudasPersonalesWidget(),
+        ),
+        FFRoute(
+          name: 'DeudasFamiliares',
+          path: '/deudasFamiliares',
+          builder: (context, params) => const DeudasFamiliaresWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -313,7 +346,7 @@ extension _GoRouterStateExtensions on GoRouterState {
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
-    ..addAll(queryParameters)
+    ..addAll(uri.queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -369,8 +402,12 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+    );
   }
 }
 
@@ -402,8 +439,8 @@ class FFRoute {
           }
 
           if (requireAuth && !appStateNotifier.loggedIn) {
-            appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/perfilesFamiliares';
+            appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
+            return '/inicioSesion';
           }
           return null;
         },
@@ -481,7 +518,7 @@ class RootPageContext {
   static bool isInactiveRootPage(BuildContext context) {
     final rootPageContext = context.read<RootPageContext?>();
     final isRootPage = rootPageContext?.isRootPage ?? false;
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).uri.toString();
     return isRootPage &&
         location != '/' &&
         location != rootPageContext?.errorRoute;

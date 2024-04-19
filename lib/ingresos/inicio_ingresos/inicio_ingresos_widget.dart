@@ -24,41 +24,42 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InicioIngresosModel());
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -137,6 +138,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -172,6 +174,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -203,6 +206,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -234,6 +238,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -265,6 +270,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -296,6 +302,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -327,6 +334,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -349,8 +357,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -368,6 +375,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -407,6 +415,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -433,6 +442,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -450,6 +460,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF091D33),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
                             ),
                       ),
@@ -574,8 +585,12 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                   title: Text(
                                     listViewIngresosRecord.tipoIngreso,
                                     textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).titleLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                   subtitle: Text(
                                     '₡${listViewIngresosRecord.monto.toString()}',
@@ -585,9 +600,16 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                         .override(
                                           fontFamily: 'Lato',
                                           color: const Color(0xFF288347),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
-                                  tileColor: const Color(0xAA6AB3E7),
+                                  trailing: Icon(
+                                    Icons.edit,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 20.0,
+                                  ),
+                                  tileColor: const Color(0xFF6AB3E7),
                                   dense: false,
                                   contentPadding:
                                       const EdgeInsetsDirectional.fromSTEB(
@@ -617,6 +639,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -634,6 +657,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                               fontFamily: 'Lato',
                               color: const Color(0xFF091D33),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
                             ),
                       ),
@@ -758,8 +782,12 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                   title: Text(
                                     listViewIngresosRecord.perfil,
                                     textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).titleLarge,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                   subtitle: Text(
                                     '₡${listViewIngresosRecord.monto.toString()}',
@@ -769,9 +797,16 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                                         .override(
                                           fontFamily: 'Lato',
                                           color: const Color(0xFF288347),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
-                                  tileColor: const Color(0xAA6AB3E7),
+                                  trailing: Icon(
+                                    Icons.edit,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 20.0,
+                                  ),
+                                  tileColor: const Color(0xFF6AB3E7),
                                   dense: false,
                                   contentPadding:
                                       const EdgeInsetsDirectional.fromSTEB(
@@ -810,7 +845,7 @@ class _InicioIngresosWidgetState extends State<InicioIngresosWidget>
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          context.pushNamed('AgregarGasto');
+                          context.pushNamed('AgregarIngreso');
                         },
                       ),
                     ],

@@ -8,19 +8,17 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for txtUsuario widget.
   FocusNode? txtUsuarioFocusNode;
-  TextEditingController? txtUsuarioController;
-  String? Function(BuildContext, String?)? txtUsuarioControllerValidator;
+  TextEditingController? txtUsuarioTextController;
+  String? Function(BuildContext, String?)? txtUsuarioTextControllerValidator;
   // State field(s) for txtCorreo widget.
   FocusNode? txtCorreoFocusNode;
-  TextEditingController? txtCorreoController;
-  String? Function(BuildContext, String?)? txtCorreoControllerValidator;
+  TextEditingController? txtCorreoTextController;
+  String? Function(BuildContext, String?)? txtCorreoTextControllerValidator;
   // State field(s) for txtPassword widget.
   FocusNode? txtPasswordFocusNode;
-  TextEditingController? txtPasswordController;
+  TextEditingController? txtPasswordTextController;
   late bool txtPasswordVisibility;
-  String? Function(BuildContext, String?)? txtPasswordControllerValidator;
-
-  /// Initialization and disposal methods.
+  String? Function(BuildContext, String?)? txtPasswordTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -31,16 +29,12 @@ class RegistrarseModel extends FlutterFlowModel<RegistrarseWidget> {
   void dispose() {
     unfocusNode.dispose();
     txtUsuarioFocusNode?.dispose();
-    txtUsuarioController?.dispose();
+    txtUsuarioTextController?.dispose();
 
     txtCorreoFocusNode?.dispose();
-    txtCorreoController?.dispose();
+    txtCorreoTextController?.dispose();
 
     txtPasswordFocusNode?.dispose();
-    txtPasswordController?.dispose();
+    txtPasswordTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

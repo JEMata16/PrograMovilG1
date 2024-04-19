@@ -15,11 +15,9 @@ class EditarGastoModel extends FlutterFlowModel<EditarGastoWidget> {
   FormFieldController<String>? tipoGastoValueController;
   // State field(s) for txtMonto widget.
   FocusNode? txtMontoFocusNode;
-  TextEditingController? txtMontoController;
-  String? Function(BuildContext, String?)? txtMontoControllerValidator;
+  TextEditingController? txtMontoTextController;
+  String? Function(BuildContext, String?)? txtMontoTextControllerValidator;
   DateTime? datePicked;
-
-  /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
@@ -28,10 +26,6 @@ class EditarGastoModel extends FlutterFlowModel<EditarGastoWidget> {
   void dispose() {
     unfocusNode.dispose();
     txtMontoFocusNode?.dispose();
-    txtMontoController?.dispose();
+    txtMontoTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

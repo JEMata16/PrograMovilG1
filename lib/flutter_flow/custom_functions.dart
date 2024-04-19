@@ -12,29 +12,22 @@ import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-double sumarGastos() {
-  double gasto = 0;
-  double suma = 0;
-
-  suma = suma + gasto;
-  return suma;
-}
-
 double totalGastos() {
-  List<double> gastos = [];
   double total = 0;
-  for (double add in gastos) {
-    total += add;
-  }
+
+  FirebaseFirestore.instance
+      .collection('gastos')
+      .where('perfil', isEqualTo: 'Personal')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      total += (doc['monto'] ?? 0) as double;
+    });
+  }).catchError((error) {
+    print('Error al obtener los gastos: $error');
+  });
+
   return total;
-}
-
-double sumarIngresos() {
-  double ingreso = 0;
-  double suma = 0;
-
-  suma = suma + ingreso;
-  return suma;
 }
 
 double totalIngresos() {
@@ -43,5 +36,23 @@ double totalIngresos() {
   for (double add in ingresos) {
     total += add;
   }
+  return total;
+}
+
+double? gastosPorPerfil(String? idPerfil) {
+  double total = 0;
+
+  FirebaseFirestore.instance
+      .collection('gastos')
+      .where('perfil', isEqualTo: idPerfil)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      total += (doc['monto'] ?? 0) as double;
+    });
+  }).catchError((error) {
+    print('Error al obtener los gastos: $error');
+  });
+
   return total;
 }

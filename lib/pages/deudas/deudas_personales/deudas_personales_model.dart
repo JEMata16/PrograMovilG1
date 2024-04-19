@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'gastos_familiares_widget.dart' show GastosFamiliaresWidget;
+import 'deudas_personales_widget.dart' show DeudasPersonalesWidget;
 import 'package:flutter/material.dart';
 
-class GastosFamiliaresModel extends FlutterFlowModel<GastosFamiliaresWidget> {
+class DeudasPersonalesModel extends FlutterFlowModel<DeudasPersonalesWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -1,25 +1,23 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/componentes/lista_vacia/lista_vacia_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'ingresos_personales_model.dart';
-export 'ingresos_personales_model.dart';
+import 'deudas_personales_model.dart';
+export 'deudas_personales_model.dart';
 
-class IngresosPersonalesWidget extends StatefulWidget {
-  const IngresosPersonalesWidget({super.key});
+class DeudasPersonalesWidget extends StatefulWidget {
+  const DeudasPersonalesWidget({super.key});
 
   @override
-  State<IngresosPersonalesWidget> createState() =>
-      _IngresosPersonalesWidgetState();
+  State<DeudasPersonalesWidget> createState() => _DeudasPersonalesWidgetState();
 }
 
-class _IngresosPersonalesWidgetState extends State<IngresosPersonalesWidget>
+class _DeudasPersonalesWidgetState extends State<DeudasPersonalesWidget>
     with TickerProviderStateMixin {
-  late IngresosPersonalesModel _model;
+  late DeudasPersonalesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -28,7 +26,7 @@ class _IngresosPersonalesWidgetState extends State<IngresosPersonalesWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => IngresosPersonalesModel());
+    _model = createModel(context, () => DeudasPersonalesModel());
 
     animationsMap.addAll({
       'rowOnActionTriggerAnimation': AnimationInfo(
@@ -396,7 +394,7 @@ class _IngresosPersonalesWidgetState extends State<IngresosPersonalesWidget>
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              context.pushNamed('InicioIngresos');
+              context.safePop();
             },
             child: const Icon(
               Icons.arrow_back_ios,
@@ -419,7 +417,7 @@ class _IngresosPersonalesWidgetState extends State<IngresosPersonalesWidget>
           ),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -444,222 +442,199 @@ class _IngresosPersonalesWidgetState extends State<IngresosPersonalesWidget>
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(25.0, 15.0, 25.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Sus ingresos personales',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Lato',
-                                    color: const Color(0xFF41697D),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: StreamBuilder<List<IngresosRecord>>(
-                  stream: queryIngresosRecord(
-                    queryBuilder: (ingresosRecord) => ingresosRecord.where(
-                      'perfil',
-                      isEqualTo: 'Personal',
-                    ),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'Sus deudas personales',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Lato',
+                              color: const Color(0xFF41697D),
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
                             ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              StreamBuilder<List<DeudasRecord>>(
+                stream: queryDeudasRecord(
+                  queryBuilder: (deudasRecord) => deudasRecord.where(
+                    'perfil',
+                    isEqualTo: 'Personal',
+                  ),
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
                           ),
                         ),
-                      );
-                    }
-                    List<IngresosRecord> columnIngresosRecordList =
-                        snapshot.data!;
-                    if (columnIngresosRecordList.isEmpty) {
-                      return const ListaVaciaWidget();
-                    }
-                    return SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: List.generate(columnIngresosRecordList.length,
-                            (columnIndex) {
-                          final columnIngresosRecord =
-                              columnIngresosRecordList[columnIndex];
-                          return Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 0.0, 5.0),
-                              child: Container(
-                                width: 332.0,
-                                height: 74.0,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFF6AB3E7),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
+                      ),
+                    );
+                  }
+                  List<DeudasRecord> columnDeudasRecordList = snapshot.data!;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnDeudasRecordList.length,
+                        (columnIndex) {
+                      final columnDeudasRecord =
+                          columnDeudasRecordList[columnIndex];
+                      return Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 5.0),
+                          child: Container(
+                            width: 332.0,
+                            height: 74.0,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF6AB3E7),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20.0),
+                                bottomRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 0.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 10.0),
+                                        child: Text(
+                                          columnDeudasRecord.tituloDeuda,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Lato',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          columnDeudasRecord.fechaPago
+                                              ?.toString(),
+                                          'Unknown',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Lato',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: Row(
+                                Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 0.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 10.0),
-                                            child: Text(
-                                              columnIngresosRecord.perfil,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Lato',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle: FontStyle.italic,
-                                                  ),
-                                            ),
-                                          ),
-                                          Text(
-                                            valueOrDefault<String>(
-                                              columnIngresosRecord.fechaIngreso
-                                                  ?.toString(),
-                                              '0',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Lato',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
                                       children: [
-                                        Row(
+                                        Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 22.0, 0.0),
-                                                  child: Text(
-                                                    '₡${columnIngresosRecord.monto.toString()}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 22.0, 0.0),
+                                              child: Text(
+                                                '₡${columnDeudasRecord.monto.toString()}',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Lato',
                                                           color:
-                                                              const Color(0xFF288347),
+                                                              const Color(0xFFC23A3A),
                                                           letterSpacing: 0.0,
                                                         ),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  columnIngresosRecord
-                                                      .tipoIngreso,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                              ),
+                                            ),
+                                            Text(
+                                              columnDeudasRecord.tipo,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Lato',
                                                         letterSpacing: 0.0,
-                                                        fontStyle:
-                                                            FontStyle.italic,
                                                       ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 10.0, 30.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'EditarIngreso',
-                                                    queryParameters: {
-                                                      'ingreso': serializeParam(
-                                                        columnIngresosRecord,
-                                                        ParamType.Document,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      'ingreso':
-                                                          columnIngresosRecord,
-                                                    },
-                                                  );
-                                                },
-                                                child: Icon(
-                                                  Icons.edit,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                              ),
                                             ),
                                           ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 10.0, 30.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'EditarDeuda',
+                                                queryParameters: {
+                                                  'deudas': serializeParam(
+                                                    columnDeudasRecord,
+                                                    ParamType.Document,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'deudas': columnDeudasRecord,
+                                                },
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.edit,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                              ),
+                              ],
                             ),
-                          );
-                        }),
-                      ),
-                    );
-                  },
-                ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                },
               ),
             ],
           ),

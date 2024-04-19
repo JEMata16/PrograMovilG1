@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'inicio_sesion_model.dart';
 export 'inicio_sesion_model.dart';
 
@@ -23,10 +24,10 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
     super.initState();
     _model = createModel(context, () => InicioSesionModel());
 
-    _model.txtCorreoController ??= TextEditingController();
+    _model.txtCorreoTextController ??= TextEditingController();
     _model.txtCorreoFocusNode ??= FocusNode();
 
-    _model.txtPasswordController ??= TextEditingController();
+    _model.txtPasswordTextController ??= TextEditingController();
     _model.txtPasswordFocusNode ??= FocusNode();
   }
 
@@ -57,14 +58,12 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/image_2024-02-28_171515423.png',
-                        width: MediaQuery.sizeOf(context).width * 0.7,
-                        height: MediaQuery.sizeOf(context).height * 0.3,
-                        fit: BoxFit.contain,
-                      ),
+                    Lottie.network(
+                      'https://lottie.host/2e7b7209-5af7-4233-8b24-b23f50f6f00c/guG9nWj177.json',
+                      width: MediaQuery.sizeOf(context).width * 0.5,
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      fit: BoxFit.cover,
+                      animate: true,
                     ),
                   ],
                 ),
@@ -81,6 +80,7 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ],
@@ -96,19 +96,24 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtCorreoController,
+                          controller: _model.txtCorreoTextController,
                           focusNode: _model.txtCorreoFocusNode,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Correo electrónico',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -146,10 +151,14 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                               color: Color(0xFF41697D),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           textAlign: TextAlign.start,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.txtCorreoControllerValidator
+                          validator: _model.txtCorreoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -168,6 +177,7 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                             fontFamily: 'Lato',
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ],
@@ -183,15 +193,24 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtPasswordController,
+                          controller: _model.txtPasswordTextController,
                           focusNode: _model.txtPasswordFocusNode,
                           autofocus: true,
                           obscureText: !_model.txtPasswordVisibility,
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -246,8 +265,9 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
+                                    letterSpacing: 0.0,
                                   ),
-                          validator: _model.txtPasswordControllerValidator
+                          validator: _model.txtPasswordTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -267,15 +287,14 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
 
                         final user = await authManager.signInWithEmail(
                           context,
-                          _model.txtCorreoController.text,
-                          _model.txtPasswordController.text,
+                          _model.txtCorreoTextController.text,
+                          _model.txtPasswordTextController.text,
                         );
                         if (user == null) {
                           return;
                         }
 
-                        context.goNamedAuth(
-                            'PerfilesFamiliares', context.mounted);
+                        context.goNamedAuth('Inicio', context.mounted);
                       },
                       text: 'Iniciar sesión',
                       options: FFButtonOptions(
@@ -290,6 +309,7 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
@@ -324,6 +344,7 @@ class _InicioSesionWidgetState extends State<InicioSesionWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,
                         borderSide: const BorderSide(

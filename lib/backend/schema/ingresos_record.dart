@@ -36,11 +36,17 @@ class IngresosRecord extends FirestoreRecord {
   String get perfil => _perfil ?? '';
   bool hasPerfil() => _perfil != null;
 
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
+
   void _initializeFields() {
     _tipoIngreso = snapshotData['tipoIngreso'] as String?;
     _monto = castToType<double>(snapshotData['monto']);
     _fechaIngreso = snapshotData['fechaIngreso'] as DateTime?;
     _perfil = snapshotData['perfil'] as String?;
+    _uid = snapshotData['uid'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -82,6 +88,7 @@ Map<String, dynamic> createIngresosRecordData({
   double? monto,
   DateTime? fechaIngreso,
   String? perfil,
+  String? uid,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -89,6 +96,7 @@ Map<String, dynamic> createIngresosRecordData({
       'monto': monto,
       'fechaIngreso': fechaIngreso,
       'perfil': perfil,
+      'uid': uid,
     }.withoutNulls,
   );
 
@@ -103,12 +111,13 @@ class IngresosRecordDocumentEquality implements Equality<IngresosRecord> {
     return e1?.tipoIngreso == e2?.tipoIngreso &&
         e1?.monto == e2?.monto &&
         e1?.fechaIngreso == e2?.fechaIngreso &&
-        e1?.perfil == e2?.perfil;
+        e1?.perfil == e2?.perfil &&
+        e1?.uid == e2?.uid;
   }
 
   @override
   int hash(IngresosRecord? e) => const ListEquality()
-      .hash([e?.tipoIngreso, e?.monto, e?.fechaIngreso, e?.perfil]);
+      .hash([e?.tipoIngreso, e?.monto, e?.fechaIngreso, e?.perfil, e?.uid]);
 
   @override
   bool isValidKey(Object? o) => o is IngresosRecord;

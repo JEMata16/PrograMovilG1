@@ -23,47 +23,48 @@ class _AgregarPerfilFamiliarWidgetState
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'rowOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        TintEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          color: Colors.black,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-    'textOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        SaturateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => AgregarPerfilFamiliarModel());
 
-    _model.txtFamiliarController ??= TextEditingController();
+    _model.txtFamiliarTextController ??= TextEditingController();
     _model.txtFamiliarFocusNode ??= FocusNode();
 
-    _model.txtIngincController ??= TextEditingController();
+    _model.txtIngincTextController ??= TextEditingController();
     _model.txtIngincFocusNode ??= FocusNode();
 
+    animationsMap.addAll({
+      'rowOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Colors.black,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          SaturateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -142,6 +143,7 @@ class _AgregarPerfilFamiliarWidgetState
                                     fontFamily: 'Lato',
                                     color: const Color(0xFF41697D),
                                     fontSize: 19.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ).animateOnActionTrigger(
@@ -168,6 +170,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -189,6 +192,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -210,6 +214,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -231,6 +236,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -252,6 +258,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -273,6 +280,7 @@ class _AgregarPerfilFamiliarWidgetState
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 19.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -294,8 +302,7 @@ class _AgregarPerfilFamiliarWidgetState
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'PerfilesFamiliares', context.mounted);
+                      context.goNamedAuth('InicioSesion', context.mounted);
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -313,6 +320,7 @@ class _AgregarPerfilFamiliarWidgetState
                                   fontFamily: 'Lato',
                                   color: const Color(0xFFC23A3A),
                                   fontSize: 19.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
@@ -352,6 +360,7 @@ class _AgregarPerfilFamiliarWidgetState
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -386,6 +395,7 @@ class _AgregarPerfilFamiliarWidgetState
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w800,
                                 ),
                       ),
@@ -410,6 +420,7 @@ class _AgregarPerfilFamiliarWidgetState
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -419,7 +430,7 @@ class _AgregarPerfilFamiliarWidgetState
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 20.0),
                         child: TextFormField(
-                          controller: _model.txtFamiliarController,
+                          controller: _model.txtFamiliarTextController,
                           focusNode: _model.txtFamiliarFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -428,9 +439,15 @@ class _AgregarPerfilFamiliarWidgetState
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -460,10 +477,14 @@ class _AgregarPerfilFamiliarWidgetState
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.txtFamiliarControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.txtFamiliarTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -477,6 +498,7 @@ class _AgregarPerfilFamiliarWidgetState
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Lato',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -486,7 +508,7 @@ class _AgregarPerfilFamiliarWidgetState
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 27.0),
                         child: TextFormField(
-                          controller: _model.txtIngincController,
+                          controller: _model.txtIngincTextController,
                           focusNode: _model.txtIngincFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -495,9 +517,15 @@ class _AgregarPerfilFamiliarWidgetState
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -527,10 +555,14 @@ class _AgregarPerfilFamiliarWidgetState
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0x4A6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.txtIngincControllerValidator
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.txtIngincTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -539,15 +571,16 @@ class _AgregarPerfilFamiliarWidgetState
                           await FamiliaresRecord.collection
                               .doc()
                               .set(createFamiliaresRecordData(
-                                nombre: _model.txtFamiliarController.text,
+                                nombre: _model.txtFamiliarTextController.text,
                                 ingIniales: double.tryParse(
-                                    _model.txtIngincController.text),
+                                    _model.txtIngincTextController.text),
                               ));
+                          context.safePop();
                         },
                         text: 'Agregar perfil',
                         options: FFButtonOptions(
-                          width: 269.0,
-                          height: 55.0,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -557,13 +590,14 @@ class _AgregarPerfilFamiliarWidgetState
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Lato',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

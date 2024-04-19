@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'registrarse_model.dart';
 export 'registrarse_model.dart';
 
@@ -24,13 +25,13 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
     super.initState();
     _model = createModel(context, () => RegistrarseModel());
 
-    _model.txtUsuarioController ??= TextEditingController();
+    _model.txtUsuarioTextController ??= TextEditingController();
     _model.txtUsuarioFocusNode ??= FocusNode();
 
-    _model.txtCorreoController ??= TextEditingController();
+    _model.txtCorreoTextController ??= TextEditingController();
     _model.txtCorreoFocusNode ??= FocusNode();
 
-    _model.txtPasswordController ??= TextEditingController();
+    _model.txtPasswordTextController ??= TextEditingController();
     _model.txtPasswordFocusNode ??= FocusNode();
   }
 
@@ -61,14 +62,12 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/image_2024-02-28_171515423.png',
-                        width: 300.0,
-                        height: 200.0,
-                        fit: BoxFit.contain,
-                      ),
+                    Lottie.network(
+                      'https://lottie.host/2e7b7209-5af7-4233-8b24-b23f50f6f00c/guG9nWj177.json',
+                      width: 200.0,
+                      height: 200.0,
+                      fit: BoxFit.cover,
+                      animate: true,
                     ),
                   ],
                 ),
@@ -86,6 +85,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             fontSize: 30.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -104,6 +104,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ],
@@ -119,19 +120,24 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtUsuarioController,
+                          controller: _model.txtUsuarioTextController,
                           focusNode: _model.txtUsuarioFocusNode,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Nombre de usuario',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -169,10 +175,14 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                               color: Color(0xFF41697D),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           textAlign: TextAlign.start,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.txtUsuarioControllerValidator
+                          validator: _model.txtUsuarioTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -191,6 +201,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             fontFamily: 'Lato',
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ],
@@ -206,19 +217,24 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtCorreoController,
+                          controller: _model.txtCorreoTextController,
                           focusNode: _model.txtCorreoFocusNode,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Correo electrónico',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -256,10 +272,14 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                               color: Color(0xFF41697D),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           textAlign: TextAlign.start,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.txtCorreoControllerValidator
+                          validator: _model.txtCorreoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -278,6 +298,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             fontFamily: 'Lato',
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ],
@@ -293,19 +314,24 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtPasswordController,
+                          controller: _model.txtPasswordTextController,
                           focusNode: _model.txtPasswordFocusNode,
                           autofocus: true,
                           obscureText: !_model.txtPasswordVisibility,
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Lato',
                                   color: const Color(0xFF41697D),
+                                  letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -357,10 +383,14 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                               ),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           textAlign: TextAlign.start,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.txtPasswordControllerValidator
+                          validator: _model.txtPasswordTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -380,8 +410,8 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
 
                         final user = await authManager.createAccountWithEmail(
                           context,
-                          _model.txtCorreoController.text,
-                          _model.txtPasswordController.text,
+                          _model.txtCorreoTextController.text,
+                          _model.txtPasswordTextController.text,
                         );
                         if (user == null) {
                           return;
@@ -390,12 +420,11 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                         await UsersRecord.collection
                             .doc(user.uid)
                             .update(createUsersRecordData(
-                              email: _model.txtCorreoController.text,
-                              displayName: _model.txtUsuarioController.text,
+                              email: _model.txtCorreoTextController.text,
+                              displayName: _model.txtUsuarioTextController.text,
                             ));
 
-                        context.goNamedAuth(
-                            'PerfilesFamiliares', context.mounted);
+                        context.goNamedAuth('Inicio', context.mounted);
                       },
                       text: 'Registrarse',
                       options: FFButtonOptions(
@@ -410,6 +439,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
@@ -444,6 +474,7 @@ class _RegistrarseWidgetState extends State<RegistrarseWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,
                         borderSide: const BorderSide(

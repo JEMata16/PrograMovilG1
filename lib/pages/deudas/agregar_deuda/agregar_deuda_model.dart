@@ -12,18 +12,17 @@ class AgregarDeudaModel extends FlutterFlowModel<AgregarDeudaWidget> {
   FormFieldController<String>? dropDownPerfilValueController;
   // State field(s) for txt_tituloDeuda widget.
   FocusNode? txtTituloDeudaFocusNode;
-  TextEditingController? txtTituloDeudaController;
-  String? Function(BuildContext, String?)? txtTituloDeudaControllerValidator;
+  TextEditingController? txtTituloDeudaTextController;
+  String? Function(BuildContext, String?)?
+      txtTituloDeudaTextControllerValidator;
   // State field(s) for int_monto widget.
   FocusNode? intMontoFocusNode;
-  TextEditingController? intMontoController;
-  String? Function(BuildContext, String?)? intMontoControllerValidator;
+  TextEditingController? intMontoTextController;
+  String? Function(BuildContext, String?)? intMontoTextControllerValidator;
   // State field(s) for DropDown_tipo widget.
   String? dropDownTipoValue;
   FormFieldController<String>? dropDownTipoValueController;
   DateTime? datePicked;
-
-  /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
@@ -32,13 +31,9 @@ class AgregarDeudaModel extends FlutterFlowModel<AgregarDeudaWidget> {
   void dispose() {
     unfocusNode.dispose();
     txtTituloDeudaFocusNode?.dispose();
-    txtTituloDeudaController?.dispose();
+    txtTituloDeudaTextController?.dispose();
 
     intMontoFocusNode?.dispose();
-    intMontoController?.dispose();
+    intMontoTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

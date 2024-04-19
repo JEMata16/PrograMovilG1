@@ -8,20 +8,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future crearIngreso(String uid, String perfil, String tipo, double monto,
-    DateTime fecha) async {
-  final CollectionReference<Map<String, dynamic>> coleccion =
-      FirebaseFirestore.instance.collection("ingresos");
+Future<double> sumarGastos() async {
+  double total = 0;
+  QuerySnapshot querySnapshot =
+      await FirebaseFirestore.instance.collection('gastos').get();
 
-  await coleccion.add({
-    'uid': uid,
-    'perfil': perfil,
-    'tipoIngreso': tipo,
-    'monto': monto,
-    'fechaIngreso': fecha
-  });
+  if (querySnapshot.docs.isNotEmpty) {
+    for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+      total += doc['monto'] as double;
+    }
+  }
+  return total;
 }
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!

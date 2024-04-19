@@ -28,7 +28,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
     super.initState();
     _model = createModel(context, () => AgregarPresupuestoModel());
 
-    _model.txtMontoController ??= TextEditingController();
+    _model.txtMontoTextController ??= TextEditingController();
     _model.txtMontoFocusNode ??= FocusNode();
   }
 
@@ -75,6 +75,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -108,6 +109,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -126,6 +128,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -170,14 +173,19 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                                 setState(() => _model.perfilValue = val),
                             width: MediaQuery.sizeOf(context).width * 0.95,
                             height: 56.0,
-                            textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             hintText: 'Seleccione una opción...',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 26.0,
                             ),
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 2.0,
@@ -206,6 +214,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -246,14 +255,18 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                               setState(() => _model.tipoValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           hintText: 'Seleccione una opción...',
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0xAA6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
@@ -281,6 +294,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -298,7 +312,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtMontoController,
+                          controller: _model.txtMontoTextController,
                           focusNode: _model.txtMontoFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -310,6 +324,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                                   fontFamily: 'Lato',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
                                 ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
@@ -317,6 +332,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                                   fontFamily: 'Lato',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -347,7 +363,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
@@ -355,8 +371,9 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                                 fontFamily: 'Lato',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
                               ),
-                          validator: _model.txtMontoControllerValidator
+                          validator: _model.txtMontoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -382,7 +399,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                           ),
                           _model.perfilValue!,
                           _model.tipoValue!,
-                          double.parse(_model.txtMontoController.text),
+                          double.parse(_model.txtMontoTextController.text),
                         );
 
                         context.pushNamed('InicioPresupuestos');
@@ -413,6 +430,7 @@ class _AgregarPresupuestoWidgetState extends State<AgregarPresupuestoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(

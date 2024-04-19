@@ -8,15 +8,13 @@ class InicioSesionModel extends FlutterFlowModel<InicioSesionWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for txtCorreo widget.
   FocusNode? txtCorreoFocusNode;
-  TextEditingController? txtCorreoController;
-  String? Function(BuildContext, String?)? txtCorreoControllerValidator;
+  TextEditingController? txtCorreoTextController;
+  String? Function(BuildContext, String?)? txtCorreoTextControllerValidator;
   // State field(s) for txtPassword widget.
   FocusNode? txtPasswordFocusNode;
-  TextEditingController? txtPasswordController;
+  TextEditingController? txtPasswordTextController;
   late bool txtPasswordVisibility;
-  String? Function(BuildContext, String?)? txtPasswordControllerValidator;
-
-  /// Initialization and disposal methods.
+  String? Function(BuildContext, String?)? txtPasswordTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -27,13 +25,9 @@ class InicioSesionModel extends FlutterFlowModel<InicioSesionWidget> {
   void dispose() {
     unfocusNode.dispose();
     txtCorreoFocusNode?.dispose();
-    txtCorreoController?.dispose();
+    txtCorreoTextController?.dispose();
 
     txtPasswordFocusNode?.dispose();
-    txtPasswordController?.dispose();
+    txtPasswordTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

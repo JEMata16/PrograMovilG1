@@ -30,7 +30,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
     super.initState();
     _model = createModel(context, () => EditarIngresoModel());
 
-    _model.txtMontoController ??=
+    _model.txtMontoTextController ??=
         TextEditingController(text: widget.ingreso?.monto.toString());
     _model.txtMontoFocusNode ??= FocusNode();
   }
@@ -78,6 +78,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Lato',
                       fontSize: 18.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,
                     ),
               ),
@@ -111,6 +112,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                               fontFamily: 'Lato',
                               color: const Color(0xFF41697D),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -129,6 +131,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -177,13 +180,18 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                                 setState(() => _model.perfilIngresoValue = val),
                             width: MediaQuery.sizeOf(context).width * 0.95,
                             height: 56.0,
-                            textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 26.0,
                             ),
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 2.0,
@@ -212,6 +220,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -225,8 +234,8 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    StreamBuilder<List<TipoRecord>>(
-                      stream: queryTipoRecord(),
+                    StreamBuilder<List<TipoIngresosRecord>>(
+                      stream: queryTipoIngresosRecord(),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -242,28 +251,32 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             ),
                           );
                         }
-                        List<TipoRecord> tipoIngresoTipoRecordList =
-                            snapshot.data!;
+                        List<TipoIngresosRecord>
+                            tipoIngresoTipoIngresosRecordList = snapshot.data!;
                         return FlutterFlowDropDown<String>(
                           controller: _model.tipoIngresoValueController ??=
                               FormFieldController<String>(
                             _model.tipoIngresoValue ??=
                                 widget.ingreso?.tipoIngreso,
                           ),
-                          options: tipoIngresoTipoRecordList
+                          options: tipoIngresoTipoIngresosRecordList
                               .map((e) => e.nombre)
                               .toList(),
                           onChanged: (val) =>
                               setState(() => _model.tipoIngresoValue = val),
                           width: MediaQuery.sizeOf(context).width * 0.95,
                           height: 56.0,
-                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Lato',
+                                    letterSpacing: 0.0,
+                                  ),
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
-                          fillColor: const Color(0xAA6AB3E7),
+                          fillColor: const Color(0xFF6AB3E7),
                           elevation: 2.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
@@ -291,6 +304,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -308,7 +322,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.txtMontoController,
+                          controller: _model.txtMontoTextController,
                           focusNode: _model.txtMontoFocusNode,
                           autofocus: true,
                           obscureText: false,
@@ -320,8 +334,14 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                                   fontFamily: 'Lato',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -351,15 +371,16 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0xAA6AB3E7),
+                            fillColor: const Color(0xFF6AB3E7),
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
                                 fontFamily: 'Lato',
                                 color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
                               ),
-                          validator: _model.txtMontoControllerValidator
+                          validator: _model.txtMontoTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -378,6 +399,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             fontFamily: 'Lato',
                             color: const Color(0xFF41697D),
                             fontSize: 15.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.italic,
                           ),
@@ -410,6 +432,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                                   .override(
                                     fontFamily: 'Lato',
                                     fontSize: 32.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                               pickerBackgroundColor:
@@ -450,6 +473,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
@@ -472,7 +496,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                       width: MediaQuery.sizeOf(context).width * 0.95,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xAA6AB3E7),
+                        color: const Color(0xFF6AB3E7),
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
                           color: FlutterFlowTheme.of(context).alternate,
@@ -489,7 +513,12 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                               _model.datePicked?.toString(),
                               '[DD/MM/YYYY]',
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Lato',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       ),
@@ -508,8 +537,8 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                         await widget.ingreso!.reference
                             .update(createIngresosRecordData(
                           tipoIngreso: _model.tipoIngresoValue,
-                          monto:
-                              double.tryParse(_model.txtMontoController.text),
+                          monto: double.tryParse(
+                              _model.txtMontoTextController.text),
                           fechaIngreso: _model.datePicked,
                           perfil: _model.perfilIngresoValue,
                         ));
@@ -542,6 +571,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
@@ -593,6 +623,7 @@ class _EditarIngresoWidgetState extends State<EditarIngresoWidget> {
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lato',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(
